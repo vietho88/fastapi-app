@@ -18,11 +18,6 @@ class CCCDList(BaseModel):
 class MSTList(BaseModel):
     mst_list: List[str]
 
-str_tinh = './tinh.txt'
-with open(str_tinh, "r", encoding='utf-8') as myfile:
-    str_values = myfile.read()
-list_tinh = str_values.split('\n')
-
 async def fetch_captcha_text(session, img_data: str) -> str:
     url = "http://117.2.155.191:7010/ocr_tracuunnt"
     payload = {'imgfile': img_data, 'model': '1'}
