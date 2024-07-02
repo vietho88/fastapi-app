@@ -1,1 +1,6 @@
 fastapi[all]
+uvicorn[standard]
+playwright
+pybase64
+asyncio
+aiohttp
