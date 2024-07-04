@@ -100,7 +100,7 @@ async def process_single_request(input_value: str, sem: asyncio.Semaphore, input
 
 @app.post("/scrape_mst_bulk_from_cccd")
 async def scrape_mst_bulk_from_cccd(cccd_list: CCCDList):
-    sem = asyncio.Semaphore(3)  # Số lượng tác vụ đồng thời tối đa
+    sem = asyncio.Semaphore(2)  # Số lượng tác vụ đồng thời tối đa
     tasks = [asyncio.create_task(process_single_request(cccd, sem, 'cccd')) for cccd in cccd_list.cccd_list]
     results = await asyncio.gather(*tasks)
 
@@ -112,7 +112,7 @@ async def scrape_mst_bulk_from_cccd(cccd_list: CCCDList):
 
 @app.post("/scrape_mst_bulk_from_mst")
 async def scrape_mst_bulk_from_mst(mst_list: MSTList):
-    sem = asyncio.Semaphore(3)  # Số lượng tác vụ đồng thời tối đa
+    sem = asyncio.Semaphore(2)  # Số lượng tác vụ đồng thời tối đa
     tasks = [asyncio.create_task(process_single_request(mst, sem, 'mst')) for mst in mst_list.mst_list]
     results = await asyncio.gather(*tasks)
 
